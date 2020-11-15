@@ -1,0 +1,6 @@
+{
+  "chrome_driver_path": "chromedriver_win32/chromedriver.exe",
+  "url_pattern": "https://www.oddsportal.com/basketball/europe/euroleague-%d-%d/results/",
+  "data_dir": "data",
+  "filename_pattern": "euroleague_%d_%d_odds.csv"
+}
