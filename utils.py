@@ -8,6 +8,8 @@ def get_page_teams(soup):
     away_teams_page = []
     for team in teams:
         u = team.find_all('a')[0]
+        if len(u) < 2:
+            continue
         home_team = u.contents[0].string.strip(' - ')
         away_team = u.contents[1].string.strip(' - ')
         home_teams_page.append(home_team)
@@ -22,6 +24,8 @@ def get_page_scores(soup):
     home_points_page = []
     away_points_page = []
     for score in scores:
+        if score.contents[0] == 'canc.':
+            continue
         home_pnts, away_pnts = score.string.split(':')
         home_pnts = int(home_pnts.strip('\xa0OT'))
         away_pnts = int(away_pnts.strip('\xa0OT'))
