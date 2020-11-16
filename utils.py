@@ -24,7 +24,7 @@ def get_page_scores(soup):
     home_points_page = []
     away_points_page = []
     for score in scores:
-        if score.contents[0] == 'canc.':
+        if score.contents[0] in ['canc.', 'postp.']:
             continue
         home_pnts, away_pnts = score.string.split(':')
         home_pnts = int(home_pnts.strip('\xa0OT'))

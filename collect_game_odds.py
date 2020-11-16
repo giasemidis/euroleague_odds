@@ -15,18 +15,22 @@ def main(season):
     # read settings file
     settings = read_json('settings.json')
     exec_path = settings['chrome_driver_path']
-    url_pattern = settings['url_pattern']
     data_dir = settings['data_dir']
     filename_pattern = settings['filename_pattern']
+    current_season = settings['current_season']
     filepath = os.path.join(data_dir, filename_pattern % (season - 1, season))
+    if season == current_season:
+        url1 = settings['url_current']
+    else:
+        url1 = settings['url_hist_pattern'] % (season - 1, season)
 
+    # set the browser settings
     options = webdriver.ChromeOptions()
     options.add_argument('--ignore-certificate-errors')
     options.add_argument('--incognito')
     options.add_argument('--headless')
 
     driver = webdriver.Chrome(executable_path=exec_path, options=options)
-    url1 = url_pattern % (season - 1, season)
 
     home_teams_all = []
     away_teams_all = []
