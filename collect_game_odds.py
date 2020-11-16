@@ -73,6 +73,9 @@ def main(season):
         'away_team_odds': away_teams_odds_all
     })
 
+    # some pages return identical results to previous ones.
+    df.drop_duplicates(inplace=True)
+
     # reverse the order of the games as the latest games are collected first.
     final_df = df.iloc[::-1, :].reset_index(drop=True)
     logging.info('Write to file')
